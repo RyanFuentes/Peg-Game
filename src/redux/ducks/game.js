@@ -11,7 +11,7 @@ const removePegAction = createAction(REMOVE_PEG);
 const movePegAction = createAction(MOVE_PEG);
 const unlockControlsAction = createAction(UNLOCK_CONTROLS);
 
-export const newGame = () => (dispatch) => dispatch(newGameAction())
+export const newGame = (difficulty) => (dispatch) => dispatch(newGameAction({difficulty}))
 
 export const openingMove = (pegId) => (dispatch, getState) => {
   let {game: {started, pegs}} = getState();
@@ -53,8 +53,8 @@ const initialState = (puzzleLength = 5) => {
 
 
 export default handleActions({
-  [NEW_GAME]: () => {
-    return initialState();
+  [NEW_GAME]: (state, {payload: {difficulty}}) => {
+    return initialState(difficulty);
   },
   [REMOVE_PEG]: (state, {payload: {pegId}}) => {
     let pegIndex = state.pegs.indexOf(state.pegs.find(p => p.id === pegId));

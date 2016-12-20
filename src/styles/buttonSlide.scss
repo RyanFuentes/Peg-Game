@@ -1,0 +1,44 @@
+.button-slide {
+
+  button {
+
+    color: #6c6ebf;
+    background-color: #d1d2e6;
+    border: 1px solid #6c6ebf;
+    border-radius: 2px;
+    transition: background-color 0.1s;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      background-color: #C4C4E1;
+    }
+  }
+
+  button.button-slide-main {
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .button-slide-menu {
+    overflow-y: hidden;
+    margin: -10px 15px 0px;
+    transition: height 0.5s cubic-bezier(0, 1, 0.5, 1);
+    height: 80px;
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 5px;
+    }
+
+    &.closed {
+      height: 0px;
+    }
+  }
+
+}

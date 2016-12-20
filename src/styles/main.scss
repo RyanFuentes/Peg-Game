@@ -42,24 +42,4 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-
-  button {
-    font-size: 20px;
-    color: #6c6ebf;
-    background-color: #d1d2e6;
-    border: 1px solid #6c6ebf;
-    border-radius: 2px;
-    margin: 10px;
-    padding: 10px;
-    transition: background-color 0.1s;
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:active {
-      background-color: #C4C4E1;
-    }
-  }
 }
