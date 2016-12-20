@@ -1,7 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { createNewBoard, createPegs, isGameOver, getHoveredHole, getMiddleHole } from '../../utils/helpers';
-
-import { dropPeg } from './game';
+import { jumpMove } from './game';
 
 const PEG_DRAG_START = 'PEG_DRAG_START';
 const PEG_DRAGGING = 'PEG_DRAGGING';
@@ -29,7 +28,7 @@ export const pegDragging = (pageX, pageY) => (dispatch, getState) => {
 export const pegEndDrag = () => (dispatch, getState) => {
   let {draggedPeg} = getState();
   if (draggedPeg.isBeingDragged) {
-    dispatch(dropPeg());
+    dispatch(jumpMove());
     dispatch(pegEndDragAction());
   }
 }

@@ -25,7 +25,7 @@ export const createNewBoard = (sideLength = 5) => {
   let numHoles = numHolesFromLength(sideLength);
 
   return [...Array(numHoles).keys()].map(n => ({
-    id: n,
+    id: n.toString(),
     ...coordinatesByIndex(n)
   }));
 }
@@ -33,7 +33,7 @@ export const createNewBoard = (sideLength = 5) => {
 export const createPegs = (board) => {
   let colors = generatePrettyColors();
   return board.map((h, i) => ({
-    id: i,
+    id: i.toString(),
     holeId: h.id,
     color: `#${colors[i%colors.length]}`
   }));
