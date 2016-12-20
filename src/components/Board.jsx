@@ -24,6 +24,14 @@ class Board extends Component {
 
   getPegTransitionStyles = () => (
     this.props.pegs.map(peg => ({
+      style: {scale: spring(1)},
+      key: peg.id,
+      data: peg
+    }))
+  );
+
+  getPegDefaultStyles = () => (
+    this.props.pegs.map(peg => ({
       style: {scale: 1},
       key: peg.id,
       data: peg
@@ -43,8 +51,7 @@ class Board extends Component {
   };
 
   handleMouseUp = () => {
-    let {endDrag} = this.props;
-    endDrag();
+    this.props.endDrag();
   };
 
   willLeave = () => {
@@ -58,6 +65,7 @@ class Board extends Component {
       <TransitionMotion
         willLeave={this.willLeave}
         didLeave={this.props.animationDone}
+        defaultStyles={this.getPegDefaultStyles()}
         styles={this.getPegTransitionStyles}>
         {pegs => (
           <div className="game-board">

@@ -13,7 +13,7 @@ const pegEndDragAction = createAction(PEG_DRAG_END);
 
 export const pegStartDrag = (pegId, delta, mouse) => (dispatch, getState) => {
   let {game} = getState();
-  if (!game.lockControls && game.started) {
+  if (game.started) {
     dispatch(pegStartDragAction({pegId, delta, mouse}));
   }
 }

@@ -4,12 +4,10 @@ import { createNewBoard, createPegs, isGameOver, getHoveredHole, getJumpedPeg } 
 const NEW_GAME = 'NEW_GAME';
 const REMOVE_PEG = 'REMOVE_PEG';
 const MOVE_PEG = 'MOVE_PEG';
-const UNLOCK_CONTROLS = 'UNLOCK_CONTROLS';
 
 const newGameAction = createAction(NEW_GAME);
 const removePegAction = createAction(REMOVE_PEG);
 const movePegAction = createAction(MOVE_PEG);
-const unlockControlsAction = createAction(UNLOCK_CONTROLS);
 
 export const newGame = () => (dispatch) => dispatch(newGameAction())
 
@@ -34,10 +32,6 @@ export const dropPeg = () => (dispatch, getState) => {
   }
 }
 
-export const unlockControls = () => (dispatch, getState) => {
-  dispatch(unlockControlsAction());
-}
-
 const initialState = (puzzleLength = 5) => {
   let board = createNewBoard(puzzleLength);
   let pegs = createPegs(board);
@@ -45,7 +39,6 @@ const initialState = (puzzleLength = 5) => {
   return {
     board,
     pegs,
-    lockControls: false,
     started: false,
     isGameOver: false
   }
@@ -61,7 +54,6 @@ export default handleActions({
     let updatedPegs = [...state.pegs.slice(0, pegIndex), ...state.pegs.slice(pegIndex + 1)];
     return {...state,
       started: true,
-      lockControls: true,
       isGameOver: isGameOver(state.board, updatedPegs),
       pegs: updatedPegs
     };
@@ -69,11 +61,6 @@ export default handleActions({
   [MOVE_PEG]: (state, {payload: {pegId, holeId}}) => {
     return {...state,
       pegs: state.pegs.map(p => p.id === pegId ? {...p, holeId} : p)
-    };
-  },
-  [UNLOCK_CONTROLS]: (state) => {
-    return {...state,
-      lockControls: false
     };
   }
 }, initialState());
